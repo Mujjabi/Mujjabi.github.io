@@ -4,9 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>This is our example webpage</title>
+<script src="<script src="https://cdn.jsdelivr.net/npm/vega@5.25.0/build/vega.min.js" integrity="sha256-na2uPt+tUPV7GRVpc+/ezQj+lGwljIvOJifkmg8f3as=" crossorigin="anonymous"></script>"
+<script src="<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.15.0/build/vega-lite.min.js" integrity="sha256-WLAn82Ut4GptY/IJf4K/1i+R8ibAkVLFhBVkOovqCK8=" crossorigin="anonymous"></script>"
+<script src="<script src="https://cdn.jsdelivr.net/npm/embed@0.0.1/index.min.js"></script>"
 </head>
 <body>
 </p>
+<div> id="viz"</div>
+<script>
+    var vlSpec = {
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "data/movies.json"},
+  "params": [{"name": "myfirstparam", "select": "interval"}],
+  "hconcat": [
+    {"mark": "bar",
+     "encoding" : {
+    "x": {"field": "IMDB Rating","type": "quantitative",
+       "bin" : true},
+    "y": {"aggregate": "mean", "field": "US Gross"}
+   }
+   },
+   {
+   "mark": "point",
+      "encoding" : {
+        "x": {
+          "field": "US Gross",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Worldwide Gross", "type": "quantitative"},
+          "color": {"value": "grey", "condition": {"param": "myfirstparam"}}
+        }
+      }
+   ]
+  }
+
+</script>
 This is an example paragraph. You can do things here like <strong> strongly</strong>. you can also <em> emphasize</em>
 </body>
 </html>
